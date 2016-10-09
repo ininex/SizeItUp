@@ -9,12 +9,11 @@
 import Foundation
 import UIKit
 
-class History: UIViewController{
+class History: UITableViewController{
     
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
-        
         self.navigationController?.navigationBar.tintColor = UIColor.white
     }
     
@@ -25,13 +24,6 @@ class History: UIViewController{
     
     func Album(_ sender: AnyObject) {
         print("Album has been pushed")
-    }
-   
-    
-    @IBAction func Scan(_ sender: UIButton) {
-        print("sender state is -> \(sender.state)")
-        let nextVC = UIStoryboard(name: "Main" , bundle: nil).instantiateViewController(withIdentifier: "scanningVC")
-        self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
 }

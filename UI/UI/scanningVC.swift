@@ -9,8 +9,9 @@
 import Foundation
 import UIKit
 import iCarousel
+import Firebase
 
-class scanningVC: UIViewController, iCarouselDelegate, iCarouselDataSource{
+class scanningVC: UIViewController, iCarouselDelegate, iCarouselDataSource, cameraFrameProcessorDelegate{
     
     @IBOutlet weak var cameraView: UIImageView!
     
@@ -24,13 +25,33 @@ class scanningVC: UIViewController, iCarouselDelegate, iCarouselDataSource{
     
     override func viewDidAppear(_ animated: Bool) {
         self.title = "Scanning"
-        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(title: "Album", style: .plain, target: self, action: #selector(self.Album(_:)))
+        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(title: "Fit", style: .plain, target: self, action: #selector(self.Album(_:)))
     }
     
     override func viewDidLoad() {
+        let ref = FIRDatabase.database().reference()
+        let dict_1: [String: AnyObject] = [
+            "ProductName":"Red Bull" as AnyObject,
+            "Width":5.08 as AnyObject,
+            "Length":5.08 as AnyObject,
+            "Height":13.4 as AnyObject,
+        ]
+        let dict_2: [String: AnyObject] = [
+            "ProductName":"Tropicana Oriange Juice" as AnyObject,
+            "Width":4.88 as AnyObject,
+            "Length":4.88 as AnyObject,
+            "Height":18.82 as AnyObject,
+            ]
+        let dict_3: [String: AnyObject] = [
+            "ProductName":"Monster" as AnyObject,
+            "Width":6.88 as AnyObject,
+            "Length":6.88 as AnyObject,
+            "Height":16.22 as AnyObject,
+            ]
         self.cameraView.frame.size.width = self.view.frame.width
         self.cameraView.frame.size.height = (460/667)*self.view.frame.height
         let cameraVC = cameraFrameProcessor(nibName: nil, bundle: nil)
+        cameraVC.delegate = self
         self.addChildViewController(cameraVC)
         cameraVC.view.frame = self.cameraView.frame
         self.view.addSubview(cameraVC.view)
@@ -52,7 +73,7 @@ class scanningVC: UIViewController, iCarouselDelegate, iCarouselDataSource{
     }
 
     func numberOfItems(in carousel: iCarousel) -> Int {
-        return 5
+        return 3
         
     }
     
@@ -102,5 +123,8 @@ class scanningVC: UIViewController, iCarouselDelegate, iCarouselDataSource{
         return value
     }
     
+    func frameProcessorDidFinishRankingMatchingProducts(bestFit: String, otherKeys: [String]) {
+        print("bestFit: \(bestFit), otherKeys: \(otherKeys)")
+    }
 }
 

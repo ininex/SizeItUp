@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		252733C01DA9E97C00DC5A42 /* OpenCVWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 252733BD1DA9E97C00DC5A42 /* OpenCVWrapper.mm */; };
 		252733C11DA9E97C00DC5A42 /* UIImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 252733BF1DA9E97C00DC5A42 /* UIImage+OpenCV.mm */; };
+		258966C71DAA28280012DC9E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 258966C61DAA28280012DC9E /* GoogleService-Info.plist */; };
 		DC11C9CA5E509040ECDA8310 /* Pods_SizeItUp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC4CBCC7A33979AF3BC1D2E8 /* Pods_SizeItUp.framework */; };
 		F421E0641DA8B8F400F66D3B /* scanningVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F421E0631DA8B8F400F66D3B /* scanningVC.swift */; };
 		F44A01BD1DA95BD60035DD16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CF7DB21DA0902800286D8E /* AppDelegate.swift */; };
@@ -50,6 +51,7 @@
 		252733BE1DA9E97C00DC5A42 /* UIImage+OpenCV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+OpenCV.h"; sourceTree = "<group>"; };
 		252733BF1DA9E97C00DC5A42 /* UIImage+OpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "UIImage+OpenCV.mm"; sourceTree = "<group>"; };
 		252733C41DA9E9C500DC5A42 /* UI-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UI-Bridging-Header.h"; sourceTree = "<group>"; };
+		258966C61DAA28280012DC9E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3AEF3366DCE3E945F72DCEE3 /* Pods_UI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		560003C70FB0D218C5AE431B /* Pods-SizeItUp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SizeItUp.release.xcconfig"; path = "Pods/Target Support Files/Pods-SizeItUp/Pods-SizeItUp.release.xcconfig"; sourceTree = "<group>"; };
 		A81B8DF81F6590244DA20A8C /* Pods-UI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UI.release.xcconfig"; path = "Pods/Target Support Files/Pods-UI/Pods-UI.release.xcconfig"; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				F421E0631DA8B8F400F66D3B /* scanningVC.swift */,
 				F4CF7DB91DA0902800286D8E /* Assets.xcassets */,
 				F4CF7DBB1DA0902800286D8E /* LaunchScreen.storyboard */,
+				258966C61DAA28280012DC9E /* GoogleService-Info.plist */,
 				F4CF7DBE1DA0902800286D8E /* Info.plist */,
 			);
 			path = UI;
@@ -308,6 +311,7 @@
 			files = (
 				F4CF7DBD1DA0902800286D8E /* LaunchScreen.storyboard in Resources */,
 				F4CF7DBA1DA0902800286D8E /* Assets.xcassets in Resources */,
+				258966C71DAA28280012DC9E /* GoogleService-Info.plist in Resources */,
 				F44A01C21DA9BFD90035DD16 /* Podfile in Resources */,
 				F4CF7DB81DA0902800286D8E /* Main.storyboard in Resources */,
 			);

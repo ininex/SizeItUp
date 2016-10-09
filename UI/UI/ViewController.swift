@@ -21,7 +21,7 @@ class ViewController: UIViewController
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
-        self.title = "Scanner"
+        self.title = "Size It Up!"
         self.navigationController?.navigationBar.topItem?.leftBarButtonItem = UIBarButtonItem(title: "History", style: .plain, target: self, action: #selector(self.History(_:)))
         self.navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(title: "Album", style: .plain, target: self, action: #selector(self.Album(_:)))
         self.navigationController?.navigationBar.tintColor = UIColor.white

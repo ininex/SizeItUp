@@ -25,13 +25,13 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="UI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SizeItUp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CLT-Yg-fxH">
@@ -95,13 +95,13 @@
         <!--ScanningVC-->
         <scene sceneID="4HY-LC-f5H">
             <objects>
-                <viewController storyboardIdentifier="scanningVC" id="FWW-5F-fl3" customClass="scanningVC" customModule="UI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="scanningVC" id="FWW-5F-fl3" customClass="scanningVC" customModule="SizeItUp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KCg-nd-zA0"/>
                         <viewControllerLayoutGuide type="bottom" id="aSd-HK-e3z"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="vMB-lv-7gK">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bj2-4H-bht">
@@ -135,54 +135,35 @@
             <point key="canvasLocation" x="877.60000000000002" y="35.532233883058474"/>
         </scene>
         <!--History-->
-        <scene sceneID="ekp-dn-exG">
+        <scene sceneID="ieM-tL-GhR">
             <objects>
-                <viewController storyboardIdentifier="History" title="History" id="Gdd-Xb-BDM" customClass="History" customModule="UI" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Rva-Na-aJm"/>
-                        <viewControllerLayoutGuide type="bottom" id="koj-4m-Igr"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="wsM-Cf-Ljg">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                <tableViewController storyboardIdentifier="History" id="CEz-W4-tB9" customClass="History" customModule="SizeItUp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="N5A-gE-Jwq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U4w-gw-R9v">
-                                <frame key="frameInset" minY="548" width="375" height="119"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pRc-fZ-O9e">
-                                        <frame key="frameInset" minX="158" minY="74" width="61" height="45"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="SCAN">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="Scan:" destination="Gdd-Xb-BDM" eventType="touchUpInside" id="epN-By-eZc"/>
-                                        </connections>
-                                    </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="scan icon " translatesAutoresizingMaskIntoConstraints="NO" id="d9w-cI-9cC">
-                                        <frame key="frameInset" minX="160" minY="16" width="56" height="58"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" red="0.20784313730000001" green="0.20000000000000001" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YfO-uZ-7o2">
-                                <frame key="frameInset" minY="44" width="375" height="505"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.14901960780000001" green="0.1450980392" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TkQ-Br-kPC" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="c8z-o2-WrW">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="c8z-o2-WrW" id="NZu-iQ-I2m">
+                                    <frame key="frameInset" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="CEz-W4-tB9" id="unb-D6-efy"/>
+                            <outlet property="delegate" destination="CEz-W4-tB9" id="wUO-3t-W1k"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qho-42-eil" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1624.8" y="35.532233883058474"/>
+            <point key="canvasLocation" x="1670" y="36"/>
         </scene>
     </scenes>
     <resources>
         <image name="bg imge " width="750" height="1334"/>
-        <image name="scan icon " width="119" height="123"/>
     </resources>
 </document>

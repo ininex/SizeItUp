@@ -8,10 +8,16 @@
 
 import Foundation
 import AVFoundation
+import GameplayKit
 import UIKit
 
+protocol cameraFrameProcessorDelegate {
+    func frameProcessorDidFinishRankingMatchingProducts(bestFit:String, otherKeys:[String])
+}
 
 class cameraFrameProcessor: UIViewController {
+    
+    var delegate: cameraFrameProcessorDelegate?
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -31,6 +37,11 @@ class cameraFrameProcessor: UIViewController {
         "Monster": 0,
         "Tropicana Oriange Juice": 0,
         "Red Bull": 0
+    ]
+    var productsAndKeys = [
+        "Monster":"",
+        "Tropicana Oriange Juice":"",
+        "Red Bull":""
     ]
     var length = 0.0
     var height = 0.0
@@ -73,6 +84,24 @@ class cameraFrameProcessor: UIViewController {
         let targetKey = (self.keypoints as NSDictionary).allKeys(for: maxKeypointsCount).first as! String
         let bestFit = self.keypoints[targetKey]
         self.productName = targetKey
+        
+        var otherKeys: [String] = []
+        
+        for eachKey in self.keypoints.keys {
+            if eachKey != targetKey {
+                otherKeys.append(eachKey)
+            }
+        }
+        var otherKeysRandom: [String] = []
+        
+        if #available(iOS 9.0, *) {
+            otherKeysRandom = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: otherKeys) as! [String]
+        } else {
+            // Fallback on earlier versions
+            otherKeysRandom = otherKeys
+        }
+        
+        self.delegate?.frameProcessorDidFinishRankingMatchingProducts(bestFit: targetKey, otherKeys: otherKeysRandom)
         
         DispatchQueue.main.async {
             self.debugMonitor.text = "Product Name: \(self.productName), \r\n Keypoints Count: \(bestFit), \r\n Length: \(self.length), Width: \(self.width), Height: \(self.height)"
