@@ -61,7 +61,7 @@ class cameraFrameProcessor: UIViewController {
         
         guard notification.name._rawValue != "UIImageFeatureMatchingKeypointsWaiting" else{
             DispatchQueue.main.async {
-                self.productNameLoader.text = "Length: ...,\r\nWidth: ..., \r\nHeight: ..."
+                self.productSizeLoader.text = "Length: ...,\r\nWidth: ..., \r\nHeight: ..."
             }
             return
         }
@@ -115,7 +115,8 @@ class cameraFrameProcessor: UIViewController {
         
         DispatchQueue.main.async {
             //Product Name: \(self.productName),
-            self.productNameLoader.text = "Length: \(self.length), \r\nWidth: \(self.width), \r\nHeight: \(self.height)"
+            self.productSizeLoader.text = "Length: \(self.length), \r\nWidth: \(self.width), \r\nHeight: \(self.height)"
+            self.productNameLoader.text = "\(self.productName)"
         }
     }
     
@@ -147,7 +148,7 @@ class cameraFrameProcessor: UIViewController {
         return textView
     }()
     
-    lazy var productNameLoader: UITextView = {
+    lazy var productSizeLoader: UITextView = {
         let textView = UITextView(frame: CGRect(x: 20.0, y: 30.0, width: self.view.frame.width - 40.0, height: 64.0))
         textView.textColor = UIColor(red: 90/255, green: 228/255, blue: 232/255, alpha: 1.0)
         textView.font = UIFont.boldSystemFont(ofSize: 16.0)
@@ -157,6 +158,17 @@ class cameraFrameProcessor: UIViewController {
         textView.isEditable = false
         textView.isSelectable = false
         return textView
+    }()
+    
+    lazy var productNameLoader: UILabel = {
+        let label = UILabel(frame: self.view.frame)
+        label.font = UIFont.boldSystemFont(ofSize: 30.0)
+        label.adjustsFontSizeToFitWidth = true
+        label.backgroundColor = .clear
+        label.textColor = UIColor(red: 90/255, green: 228/255, blue: 232/255, alpha: 1.0)
+        label.text = "Recognizing"
+        label.textAlignment = .center
+        return label
     }()
     
     override func viewDidLoad() {
@@ -173,14 +185,14 @@ class cameraFrameProcessor: UIViewController {
         if self.shouldUseSingleFrameProcessing == false {
             cameraSession.startRunning()
             self.view.bringSubview(toFront: self.proceededVideoViewer)
-            self.view.addSubview(self.productNameLoader)
+            self.view.addSubview(self.productSizeLoader)
         }else{
             let imageView = UIImageView(frame: self.view.frame)
             imageView.image = self.singleFrame
             OpenCVWrapper.feature2DRecognition(for: UIImage(named: "reference_product"), andOriginalImage: self.singleFrame)
             imageView.contentMode = .scaleAspectFit
             self.view.addSubview(imageView)
-            self.view.addSubview(self.productNameLoader)
+            self.view.addSubview(self.productSizeLoader)
         }
        
     }
@@ -189,6 +201,7 @@ class cameraFrameProcessor: UIViewController {
         if shouldUseSingleFrameProcessing == false {
             self.toggleFlash()
         }
+        self.view.addSubview(productNameLoader)
     }
     
     override func viewDidDisappear(_ animated: Bool) {

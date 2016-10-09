@@ -58,8 +58,10 @@ class scanningVC: UIViewController, iCarouselDelegate, iCarouselDataSource, came
         NotificationCenter.default.addObserver(self, selector: #selector(self.animateFocus(notification:)), name: NSNotification.Name(rawValue: "UIImageFeatureMatchingKeypointsUpdated"), object: nil)
     }
     
+    var shouldBounceFocus = true
+    
     func animateFocus(notification: NSNotification){
-        guard notification.name._rawValue != "UIImageFeatureMatchingKeypointsWaiting" && self.shouldAnimateCarousel == true else{
+        guard notification.name._rawValue != "UIImageFeatureMatchingKeypointsWaiting" && self.shouldBounceFocus == true else{
             return
         }
         DispatchQueue.main.async {
@@ -67,7 +69,7 @@ class scanningVC: UIViewController, iCarouselDelegate, iCarouselDataSource, came
             UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.5, options: UIViewAnimationOptions.curveLinear, animations: {
                 self.cameraView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
             }) { (_) in
-                self.shouldAnimateCarousel = false
+                self.shouldBounceFocus = false
             }
         }
     }
