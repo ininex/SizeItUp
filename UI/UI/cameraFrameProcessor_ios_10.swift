@@ -113,7 +113,7 @@ class cameraFrameProcessor: UIViewController {
         DispatchQueue.main.async {
             //Product Name: \(self.productName),
             self.productSizeLoader.text = "Length: \(self.productsAndSizes[targetKey]![0]), \r\nWidth: \(self.productsAndSizes[targetKey]![1]), \r\nHeight: \(self.productsAndSizes[targetKey]![2])"
-            self.productNameLoader.text = "\(self.productName)"
+            self.productNameLoader.setTitle(self.productName, for: .normal)
         }
     }
     
@@ -157,15 +157,18 @@ class cameraFrameProcessor: UIViewController {
         return textView
     }()
     
-    lazy var productNameLoader: UILabel = {
-        let label = UILabel(frame: CGRect(x: 15.0, y: self.view.frame.origin.y, width: self.view.frame.width - 30.0, height: self.view.frame.height))
-        label.font = UIFont.boldSystemFont(ofSize: 30.0)
-        label.adjustsFontSizeToFitWidth = true
-        label.backgroundColor = .clear
-        label.textColor = UIColor(red: 90/255, green: 228/255, blue: 232/255, alpha: 1.0)
-        label.text = "Recognizing"
-        label.textAlignment = .center
-        return label
+    lazy var productNameLoader: UIButton = {
+        let button = UIButton(type: .custom)
+        button.frame = CGRect(x: 15.0, y: self.view.frame.midY - 22.0, width: self.view.frame.width - 30.0, height: 44.0)
+        button.setTitle("Recognizing", for: .normal)
+        button.setTitleColor(.lightGray, for: .highlighted)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30.0)
+        button.titleLabel?.adjustsFontSizeToFitWidth = true
+        button.titleLabel?.numberOfLines = 0
+        button.backgroundColor = .clear
+        button.titleLabel?.textColor = UIColor(red: 90/255, green: 228/255, blue: 232/255, alpha: 1.0)
+        button.titleLabel?.textAlignment = .center
+        return button
     }()
     
     override func viewDidLoad() {
