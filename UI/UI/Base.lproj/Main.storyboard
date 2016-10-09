@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -107,18 +108,9 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bj2-4H-bht">
                                 <frame key="frameInset" minY="510" width="375" height="157"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Is this what you are scanning?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="65u-5e-NLe">
-                                        <frame key="frameInset" minX="60" minY="17" width="255" height="23"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
                                 <color key="backgroundColor" red="0.20784313730000001" green="0.20000000000000001" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U08-Bp-Yfy">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="detail scanner" translatesAutoresizingMaskIntoConstraints="NO" id="U08-Bp-Yfy">
                                 <frame key="frameInset" minY="44" width="375" height="467"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -138,18 +130,44 @@
         <scene sceneID="ieM-tL-GhR">
             <objects>
                 <tableViewController storyboardIdentifier="History" id="CEz-W4-tB9" customClass="History" customModule="SizeItUp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="N5A-gE-Jwq">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="116" sectionHeaderHeight="28" sectionFooterHeight="28" id="N5A-gE-Jwq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.14901960784313725" green="0.14509803921568626" blue="0.1803921568627451" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="c8z-o2-WrW">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HistoryCell" rowHeight="116" id="c8z-o2-WrW" customClass="HistoryCell" customModule="SizeItUp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="116"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="c8z-o2-WrW" id="NZu-iQ-I2m">
-                                    <frame key="frameInset" width="375" height="43"/>
+                                    <frame key="frameInset" width="375" height="115"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FP3-1B-kYY">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="116" id="GqI-NY-r1C"/>
+                                            </constraints>
+                                        </imageView>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jc3-C4-dmd">
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Jc3-C4-dmd" secondAttribute="bottom" id="0gp-4F-O7x"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="FP3-1B-kYY" secondAttribute="leading" id="5O3-TQ-mYJ"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="FP3-1B-kYY" secondAttribute="bottom" id="D5N-vH-sMO"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Jc3-C4-dmd" secondAttribute="trailing" id="QTD-I2-d6I"/>
+                                        <constraint firstItem="Jc3-C4-dmd" firstAttribute="leading" secondItem="FP3-1B-kYY" secondAttribute="trailing" constant="8" id="Qwx-d5-ihj"/>
+                                        <constraint firstAttribute="topMargin" secondItem="Jc3-C4-dmd" secondAttribute="top" id="iup-DG-44w"/>
+                                        <constraint firstAttribute="topMargin" secondItem="FP3-1B-kYY" secondAttribute="top" id="pMc-3o-Z1j"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="content" destination="Jc3-C4-dmd" id="zXa-uw-4Tj"/>
+                                    <outlet property="productImage" destination="FP3-1B-kYY" id="hNA-XY-2Dv"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -160,10 +178,11 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qho-42-eil" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1670" y="36"/>
+            <point key="canvasLocation" x="1669.5999999999999" y="35.532233883058474"/>
         </scene>
     </scenes>
     <resources>
         <image name="bg imge " width="750" height="1334"/>
+        <image name="detail scanner" width="745" height="1052"/>
     </resources>
 </document>

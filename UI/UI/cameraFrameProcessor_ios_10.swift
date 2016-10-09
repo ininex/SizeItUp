@@ -19,13 +19,23 @@ class cameraFrameProcessor: UIViewController {
     
     var delegate: cameraFrameProcessorDelegate?
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    var shouldUseSingleFrameProcessing:Bool
+    
+    var singleFrame: UIImage!
+    
+    init(singleFrameMode: Bool) {
+        self.shouldUseSingleFrameProcessing = singleFrameMode
+        super.init(nibName: nil, bundle: nil)
         self.initAllNotificationCenters()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+        self.cameraSession.stopRunning()
     }
     
     func initAllNotificationCenters(){
@@ -147,21 +157,31 @@ class cameraFrameProcessor: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.view.layer.addSublayer(previewLayer)
-        cameraSession.startRunning()
-        self.view.bringSubview(toFront: self.proceededVideoViewer)
-        self.view.addSubview(self.debugMonitor)
+        if self.shouldUseSingleFrameProcessing == false {
+            cameraSession.startRunning()
+            self.view.bringSubview(toFront: self.proceededVideoViewer)
+            self.view.addSubview(self.debugMonitor)
+        }else{
+            let imageView = UIImageView(frame: self.view.frame)
+            imageView.image = self.singleFrame
+            OpenCVWrapper.feature2DRecognition(for: UIImage(named: "reference_product"), andOriginalImage: self.singleFrame)
+            imageView.contentMode = .scaleAspectFit
+            self.view.addSubview(imageView)
+            self.view.addSubview(self.debugMonitor)
+        }
+       
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.toggleFlash()
+        if shouldUseSingleFrameProcessing == false {
+            self.toggleFlash()
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        self.toggleFlash()
-    }
-    
-    deinit{
-        self.cameraSession.stopRunning()
+        if shouldUseSingleFrameProcessing == false {
+            self.toggleFlash()
+        }
     }
     
     func configInputAndOutput(){

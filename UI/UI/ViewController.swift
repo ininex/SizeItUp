@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate
 {
  
     @IBOutlet weak var mainNav: UINavigationBar!
@@ -77,6 +77,11 @@ class ViewController: UIViewController
     
     @IBAction func Album(_ sender: AnyObject) {
         print("Album has been pushed")
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .photoLibrary
+        present(imagePicker, animated: true, completion: nil)
     }
     
     @IBAction func History(_ sender: AnyObject) {
@@ -85,6 +90,20 @@ class ViewController: UIViewController
         self.navigationController?.pushViewController(nextVC2, animated: true)
     }
     
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            let nextVC = UIStoryboard(name: "Main" , bundle: nil).instantiateViewController(withIdentifier: "scanningVC") as! scanningVC
+            nextVC.shouldUseSingleFrameProcessing = true
+            nextVC.singleImageToProceed = pickedImage
+            self.navigationController?.pushViewController(nextVC, animated: true)
+        }
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
 }
     
 

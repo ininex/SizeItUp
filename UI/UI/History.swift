@@ -11,6 +11,9 @@ import UIKit
 
 class History: UITableViewController{
     
+    override func viewDidLoad() {
+        self.tableView.backgroundView?.backgroundColor = UIColor(red: 38/255, green: 37/255, blue: 46/255, alpha: 1.0)
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
@@ -26,5 +29,21 @@ class History: UITableViewController{
         print("Album has been pushed")
     }
     
+    
 }
 
+class HistoryCell: UITableViewCell {
+    @IBOutlet var productImage: UIImageView!
+    @IBOutlet var content: UITextView!{
+        didSet{
+            self.content.text = ""
+        }
+    }
+    
+    func set(productImage: UIImage, content: String){
+        DispatchQueue.main.async {
+            self.productImage.image = productImage
+            self.content.text = content
+        }
+    }
+}
