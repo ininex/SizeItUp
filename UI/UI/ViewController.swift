@@ -78,6 +78,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBAction func Album(_ sender: AnyObject) {
         print("Album has been pushed")
         let imagePicker = UIImagePickerController()
+        imagePicker.navigationBar.barTintColor = UIColor(red: 53/255, green: 51/255, blue: 62/255, alpha: 1.0)
+        imagePicker.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
+        imagePicker.navigationBar.tintColor = UIColor.white
+        imagePicker.title = "Pick one image to recognize object size"
         imagePicker.delegate = self
         imagePicker.allowsEditing = false
         imagePicker.sourceType = .photoLibrary

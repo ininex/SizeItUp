@@ -61,7 +61,7 @@ class cameraFrameProcessor: UIViewController {
         
         guard notification.name._rawValue != "UIImageFeatureMatchingKeypointsWaiting" else{
             DispatchQueue.main.async {
-                self.debugMonitor.text = "Product Name: Recognizing..., \r\n Keypoints Count: Recognizing..., \r\n Length: Recognizing..., Width: Recognizing..., Height: Recognizing..."
+                self.productNameLoader.text = "Length: ...,\r\nWidth: ..., \r\nHeight: ..."
             }
             return
         }
@@ -114,7 +114,8 @@ class cameraFrameProcessor: UIViewController {
         self.delegate?.frameProcessorDidFinishRankingMatchingProducts(bestFit: targetKey, otherKeys: otherKeysRandom)
         
         DispatchQueue.main.async {
-            self.debugMonitor.text = "Product Name: \(self.productName), \r\n Keypoints Count: \(bestFit), \r\n Length: \(self.length), Width: \(self.width), Height: \(self.height)"
+            //Product Name: \(self.productName),
+            self.productNameLoader.text = "Length: \(self.length), \r\nWidth: \(self.width), \r\nHeight: \(self.height)"
         }
     }
     
@@ -146,6 +147,18 @@ class cameraFrameProcessor: UIViewController {
         return textView
     }()
     
+    lazy var productNameLoader: UITextView = {
+        let textView = UITextView(frame: CGRect(x: 20.0, y: 30.0, width: self.view.frame.width - 40.0, height: 64.0))
+        textView.textColor = UIColor(red: 90/255, green: 228/255, blue: 232/255, alpha: 1.0)
+        textView.font = UIFont.boldSystemFont(ofSize: 16.0)
+        textView.backgroundColor = .clear
+        textView.text = "Initializing..."
+        textView.textAlignment = .center
+        textView.isEditable = false
+        textView.isSelectable = false
+        return textView
+    }()
+    
     override func viewDidLoad() {
         self.configInputAndOutput()
         self.view.backgroundColor = UIColor.black
@@ -160,14 +173,14 @@ class cameraFrameProcessor: UIViewController {
         if self.shouldUseSingleFrameProcessing == false {
             cameraSession.startRunning()
             self.view.bringSubview(toFront: self.proceededVideoViewer)
-            self.view.addSubview(self.debugMonitor)
+            self.view.addSubview(self.productNameLoader)
         }else{
             let imageView = UIImageView(frame: self.view.frame)
             imageView.image = self.singleFrame
             OpenCVWrapper.feature2DRecognition(for: UIImage(named: "reference_product"), andOriginalImage: self.singleFrame)
             imageView.contentMode = .scaleAspectFit
             self.view.addSubview(imageView)
-            self.view.addSubview(self.debugMonitor)
+            self.view.addSubview(self.productNameLoader)
         }
        
     }

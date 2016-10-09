@@ -51,7 +51,7 @@ class Loader {
         }
     }
     
-    private var loadingIndicatorImageView: UIImageView!
+    public var loadingIndicatorImageView: UIImageView!
     
     convenience init() {
         self.init(targetView: nil)

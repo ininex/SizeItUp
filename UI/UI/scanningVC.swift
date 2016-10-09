@@ -25,23 +25,55 @@ class scanningVC: UIViewController, iCarouselDelegate, iCarouselDataSource, came
     
     var shouldAnimateCarousel = true
     
+    var initialDataBlocker = true
+    
+    var loader: Loader!
+    
     var bestFit: String? {
         didSet{
-            DispatchQueue.main.async {
-                if self.shouldAnimateCarousel == true {
-                    self.mainCarousel.center.y += 100.0
-                    self.mainCarousel.isHidden = false
-                }
-                self.mainCarousel.reloadData()
-                if self.shouldAnimateCarousel == true {
-                    UIView.animate(withDuration: 0.2, animations: {
-                        self.mainCarousel.center.y -= 100.0
-                        }, completion: { (_) in
-                            self.shouldAnimateCarousel = false
-                    })
+            if self.initialDataBlocker == false{
+                DispatchQueue.main.async {
+                    if self.shouldAnimateCarousel == true {
+                        self.mainCarousel.center.y += 100.0
+                        self.mainCarousel.isHidden = false
+                    }
+                    self.mainCarousel.reloadData()
+                    if self.shouldAnimateCarousel == true {
+                        UIView.animate(withDuration: 0.2, animations: {
+                            self.mainCarousel.center.y -= 100.0
+                            self.mainLabel.center.y = self.cameraView.frame.maxY - 5.0
+                            }, completion: { (_) in
+                                self.loader.stop()
+                                self.mainLabel.text = "The following products best fit your need:"
+                                self.shouldAnimateCarousel = false
+                        })
+                    }
                 }
             }
         }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.animateFocus(notification:)), name: NSNotification.Name(rawValue: "UIImageFeatureMatchingKeypointsUpdated"), object: nil)
+    }
+    
+    func animateFocus(notification: NSNotification){
+        guard notification.name._rawValue != "UIImageFeatureMatchingKeypointsWaiting" && self.shouldAnimateCarousel == true else{
+            return
+        }
+        DispatchQueue.main.async {
+            self.cameraView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+            UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.5, options: UIViewAnimationOptions.curveLinear, animations: {
+                self.cameraView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            }) { (_) in
+                self.shouldAnimateCarousel = false
+            }
+        }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     var otherFits: [String]?
@@ -55,7 +87,12 @@ class scanningVC: UIViewController, iCarouselDelegate, iCarouselDataSource, came
     override func viewDidAppear(_ animated: Bool) {
         self.title = "Scanning"
         self.navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(title: "Fit", style: .plain, target: self, action: #selector(self.Album(_:)))
-        Loader.init(targetView: self.resultsView).start()
+        self.loader =  Loader.init(targetView: self.resultsView)
+        self.loader.start()
+        let deadlineTime = DispatchTime.now() + .seconds(3)
+        DispatchQueue.main.asyncAfter(deadline: deadlineTime) {
+            self.initialDataBlocker = false
+        }
     }
     
     override func viewDidLoad() {
@@ -108,9 +145,11 @@ class scanningVC: UIViewController, iCarouselDelegate, iCarouselDataSource, came
         mainCarousel.isHidden = true
         self.view.addSubview(mainCarousel)
         
-        self.mainLabel = UILabel(frame: CGRect(x: self.resultsView.frame.origin.x + 20.0, y: self.resultsView.frame.origin.y + 5.0, width: self.resultsView.frame.width - 40.0, height: 44.0))
+        self.mainLabel = UILabel(frame: CGRect(x: self.resultsView.frame.origin.x + 20.0, y: self.resultsView.frame.origin.y + 30.0, width: self.resultsView.frame.width - 40.0, height: 44.0))
+        mainLabel.numberOfLines = 0
         mainLabel.text = "Thinking..."
         mainLabel.textColor = UIColor.white
+        mainLabel.font = UIFont.boldSystemFont(ofSize: 15.0)
         mainLabel.textAlignment = .center
         self.view.addSubview(mainLabel)
     }
@@ -147,7 +186,11 @@ class scanningVC: UIViewController, iCarouselDelegate, iCarouselDataSource, came
              "Red Bull": 0
              ]*/
             itemView = UIImageView(frame:CGRect(x:0, y:0, width:80, height:80))
-            itemView.backgroundColor = UIColor.green
+            itemView.backgroundColor = UIColor(red: 38/255, green: 37/255, blue: 46/255, alpha: 1.0)
+            itemView.layer.cornerRadius = 10.0
+            itemView.layer.borderColor = UIColor.white.cgColor
+            itemView.layer.borderWidth = 4.0
+            itemView.layer.masksToBounds = true
             itemView.contentMode = .scaleAspectFit
             if index == 0 {
                 itemView.image = self.productsAndImages[self.bestFit!]
