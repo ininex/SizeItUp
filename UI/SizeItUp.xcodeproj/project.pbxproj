@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		25061C571DAA38FF00D540A9 /* loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25061C561DAA38FF00D540A9 /* loader.swift */; };
+		25061C591DAA6BB600D540A9 /* summaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25061C581DAA6BB600D540A9 /* summaryVC.swift */; };
 		252733C01DA9E97C00DC5A42 /* OpenCVWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 252733BD1DA9E97C00DC5A42 /* OpenCVWrapper.mm */; };
 		252733C11DA9E97C00DC5A42 /* UIImage+OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 252733BF1DA9E97C00DC5A42 /* UIImage+OpenCV.mm */; };
 		258966C71DAA28280012DC9E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 258966C61DAA28280012DC9E /* GoogleService-Info.plist */; };
@@ -48,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		25061C561DAA38FF00D540A9 /* loader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loader.swift; sourceTree = "<group>"; };
+		25061C581DAA6BB600D540A9 /* summaryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = summaryVC.swift; sourceTree = "<group>"; };
 		252733BC1DA9E97C00DC5A42 /* OpenCVWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCVWrapper.h; sourceTree = "<group>"; };
 		252733BD1DA9E97C00DC5A42 /* OpenCVWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVWrapper.mm; sourceTree = "<group>"; };
 		252733BE1DA9E97C00DC5A42 /* UIImage+OpenCV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+OpenCV.h"; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				F4CF7DBB1DA0902800286D8E /* LaunchScreen.storyboard */,
 				258966C61DAA28280012DC9E /* GoogleService-Info.plist */,
 				F4CF7DBE1DA0902800286D8E /* Info.plist */,
+				25061C581DAA6BB600D540A9 /* summaryVC.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -390,6 +393,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4CF7DB51DA0902800286D8E /* ViewController.swift in Sources */,
+				25061C591DAA6BB600D540A9 /* summaryVC.swift in Sources */,
 				F4CF7DB31DA0902800286D8E /* AppDelegate.swift in Sources */,
 				252733C01DA9E97C00DC5A42 /* OpenCVWrapper.mm in Sources */,
 				F44A01C01DA962DB0035DD16 /* cameraFrameProcessor_ios_10.swift in Sources */,

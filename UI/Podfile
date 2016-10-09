@@ -11,4 +11,6 @@ target 'SizeItUp' do
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
   pod 'OpenCV', '2.4.9'
+  pod 'BEMCheckBox', '~> 1.2'
+  
 end

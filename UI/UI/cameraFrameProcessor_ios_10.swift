@@ -54,6 +54,8 @@ class cameraFrameProcessor: UIViewController {
         "Red Bull":[5.08,5.08,13.4]
     ]
     
+    var selectedProduct:[String:[Double]] = [:]
+    
     func updateProduct(notification: NSNotification) {
         
         guard notification.name._rawValue != "UIImageFeatureMatchingKeypointsWaiting" else{
@@ -112,8 +114,9 @@ class cameraFrameProcessor: UIViewController {
         
         DispatchQueue.main.async {
             //Product Name: \(self.productName),
-            self.productSizeLoader.text = "Length: \(self.productsAndSizes[targetKey]![0]), \r\nWidth: \(self.productsAndSizes[targetKey]![1]), \r\nHeight: \(self.productsAndSizes[targetKey]![2])"
+            self.productSizeLoader.text = "Length: \(self.productsAndSizes[targetKey]![0]) cm, \r\nWidth: \(self.productsAndSizes[targetKey]![1]) cm, \r\nHeight: \(self.productsAndSizes[targetKey]![2]) cm"
             self.productNameLoader.setTitle(self.productName, for: .normal)
+            self.selectedProduct[self.productName] = self.productsAndSizes[self.productName]
         }
     }
     
@@ -168,9 +171,16 @@ class cameraFrameProcessor: UIViewController {
         button.backgroundColor = .clear
         button.titleLabel?.textColor = UIColor(red: 90/255, green: 228/255, blue: 232/255, alpha: 1.0)
         button.titleLabel?.textAlignment = .center
+        button.addTarget(self, action: #selector(self.confirm), for: .touchUpInside)
         return button
     }()
     
+    func confirm(){
+        let nextVC = summaryVC(nibName: nil, bundle: nil)
+        nextVC.selectedProduct = self.selectedProduct
+        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
+        
     override func viewDidLoad() {
         self.configInputAndOutput()
         self.view.backgroundColor = UIColor.black

@@ -4,19 +4,20 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-SizeItUp.xcscheme</key>
+		<key>BEMCheckBox.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<true/>
-			<key>orderHint</key>
-			<integer>1</integer>
+		</dict>
+		<key>Pods-SizeItUp.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>iCarousel.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>0</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -26,7 +27,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FDA1922370FA2C3D3A2D635EDF5739AA</key>
+		<key>566D684A68E09758048DBF71B5F34369</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>69B8B236B1A92CB02E371B609CD6455C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

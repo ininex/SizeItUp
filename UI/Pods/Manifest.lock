@@ -1,4 +1,5 @@
 PODS:
+  - BEMCheckBox (1.2.1)
   - Firebase (3.7.1):
     - Firebase/Core (= 3.7.1)
   - Firebase/Core (3.7.1):
@@ -35,6 +36,7 @@ PODS:
   - OpenCV (2.4.9)
 
 DEPENDENCIES:
+  - BEMCheckBox (~> 1.2)
   - Firebase (~> 3.6)
   - Firebase/Database
   - Firebase/Storage
@@ -42,6 +44,7 @@ DEPENDENCIES:
   - OpenCV (= 2.4.9)
 
 SPEC CHECKSUMS:
+  BEMCheckBox: 264b8b72aa92adbfefa265cc58a0cdb86b207b9f
   Firebase: be473484f0d515e72ffd04acf22f981773c23e58
   FirebaseAnalytics: 0533a00b681e08fd0b2cd0444b7ddf0ef9fd7a1a
   FirebaseCore: 5a885548bbc5f0c410b04f8e9ac9d73ff1221907
@@ -55,6 +58,6 @@ SPEC CHECKSUMS:
   iCarousel: 67c8a43da5a46795b56aadfc96cd36a16f6149b2
   OpenCV: bb17904e55fc19b1f0f6c3e29bc04a7dd31eddb9
 
-PODFILE CHECKSUM: acbd517897b97d0031c376e8fccd68842696b0c1
+PODFILE CHECKSUM: 4e590320dc50cb9dc2cb312ff729d144ec09e8a4
 
 COCOAPODS: 1.0.1
