@@ -272,7 +272,7 @@
     std::vector<cv::Point2f> scene;
     self.accessibilityIdentifier = identifier;
     //MARK: NOTE: good matches should always be greater than 4, or cvFindHomography will return error
-    if(good_matches.size()<50) {
+    if(good_matches.size()<20) {
         [[NSNotificationCenter defaultCenter]
          postNotificationName:@"UIImageFeatureMatchingKeypointsWaiting"
          object:self];

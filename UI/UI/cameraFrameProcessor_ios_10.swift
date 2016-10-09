@@ -48,14 +48,11 @@ class cameraFrameProcessor: UIViewController {
         "Tropicana Oriange Juice": 0,
         "Red Bull": 0
     ]
-    var productsAndKeys = [
-        "Monster":"",
-        "Tropicana Oriange Juice":"",
-        "Red Bull":""
+    var productsAndSizes:[String:[Double]] = [
+        "Monster":[6.88,6.88,16.22],
+        "Tropicana Oriange Juice":[4.88,4.88,18.82],
+        "Red Bull":[5.08,5.08,13.4]
     ]
-    var length = 0.0
-    var height = 0.0
-    var width = 0.0
     
     func updateProduct(notification: NSNotification) {
         
@@ -115,7 +112,7 @@ class cameraFrameProcessor: UIViewController {
         
         DispatchQueue.main.async {
             //Product Name: \(self.productName),
-            self.productSizeLoader.text = "Length: \(self.length), \r\nWidth: \(self.width), \r\nHeight: \(self.height)"
+            self.productSizeLoader.text = "Length: \(self.productsAndSizes[targetKey]![0]), \r\nWidth: \(self.productsAndSizes[targetKey]![1]), \r\nHeight: \(self.productsAndSizes[targetKey]![2])"
             self.productNameLoader.text = "\(self.productName)"
         }
     }
@@ -161,7 +158,7 @@ class cameraFrameProcessor: UIViewController {
     }()
     
     lazy var productNameLoader: UILabel = {
-        let label = UILabel(frame: self.view.frame)
+        let label = UILabel(frame: CGRect(x: 15.0, y: self.view.frame.origin.y, width: self.view.frame.width - 30.0, height: self.view.frame.height))
         label.font = UIFont.boldSystemFont(ofSize: 30.0)
         label.adjustsFontSizeToFitWidth = true
         label.backgroundColor = .clear
@@ -266,6 +263,10 @@ class cameraFrameProcessor: UIViewController {
 extension cameraFrameProcessor: AVCaptureVideoDataOutputSampleBufferDelegate {
     
     func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
+        
+        guard shouldUseSingleFrameProcessing == false else {
+            return
+        }
         
         guard sampleBuffer != nil else {
             return
