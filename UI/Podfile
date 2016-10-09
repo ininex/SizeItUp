@@ -1,0 +1,14 @@
+
+# Uncomment this line to define a global platform for your project
+platform :ios, '8.0'
+use_frameworks!
+
+target 'SizeItUp' do
+  project 'SizeItUp.xcodeproj'
+
+  pod 'iCarousel', '~> 1.8'
+  pod 'Firebase', '~> 3.6'
+  pod 'Firebase/Database'
+  pod 'Firebase/Storage'
+  pod 'OpenCV', '2.4.9'
+end
