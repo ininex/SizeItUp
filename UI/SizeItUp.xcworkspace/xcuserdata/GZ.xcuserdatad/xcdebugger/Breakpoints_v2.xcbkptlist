@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UI/cameraFrameProcessor_ios_10.swift"
-            timestampString = "497707597.587484"
+            timestampString = "497711000.205546"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "270"
-            endingLineNumber = "270"
+            startingLineNumber = "280"
+            endingLineNumber = "280"
             landmarkName = "captureOutput(_:didOutputSampleBuffer:from:)"
             landmarkType = "7">
          </BreakpointContent>
